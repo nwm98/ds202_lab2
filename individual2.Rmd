@@ -4,7 +4,7 @@ author: "Mike Brown"
 date: "2/17/2021"
 output: html_document
 ---
-
+1.
 ```{r} 
 choco <- read.csv("https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/data/choco.csv")
  
@@ -12,3 +12,10 @@ hist(choco$Rating)
  boxplot(choco$Rating)
 ```
 
+2.
+``` {r}
+y <- factor(choco$Location, levels=unique(choco$Location))
+x<-table(y)
+barplot(x)
+```
+amount of reviews seems to increase for more developed nations. more developed nations have more money for there to be more companies and potential for companies to make more than one bar. more companies and more bars within each company equates to higher amount of reviews being attributed to the respective country.
