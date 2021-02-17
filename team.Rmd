@@ -7,13 +7,18 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+choco <- read.csv("https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/data/choco.csv")
 ```
 
 ### Questions
 1.How are the ratings distributed? Create both a histogram and a boxplot and describe them. Don’t forget to mention outliers, if there are any.
 
-  Answer:
+  Answer: 
+  ``` {r}
+  hist(choco$Rating)
   
+  boxplot(choco$Rating)
+  ```
 2.How does the number of ratings depend on the location of the company? Draw a bar chart of the number of reports.
 
   Answer:
