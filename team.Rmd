@@ -22,6 +22,15 @@ choco <- read.csv("https://raw.githubusercontent.com/xdaiISU/ds202materials/mast
 2.How does the number of ratings depend on the location of the company? Draw a bar chart of the number of reports.
 
   Answer:
+   ```{r}
+  choco <- read.csv("https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/data/choco.csv") 
+  str(choco) 
+  lvlCountry <- factor(choco$Location, levels = unique(choco$Location))
+  table(lvlCountry)
+  barplot(table(lvlCountry))
+  ```
+  
+  Companies in locations that have wealth and the market for chocolate will have more reviews. An example would be the United States, as we have the wealth to purchase the chocolate and the market to sell it.
   
 3.Do ratings depend on the cacao percentage of a chocolate bar? Create both numerical and graphical summaries, and explain. [Hint: Think about why the scatterplot is not a very good choice for visualization here.]
 
