@@ -33,3 +33,5 @@ barplot(g,xlab='Rating', ylab='Cocoa Percentage')
 ```
 correlation coefficient is very low which suggests that there is no correlation. Based on the graph above, it is clear that there is no clear indicator for whether percentage effects rating.
 
+4. How do different bean origins compare in terms of the flavor of chocolates? Are beans from some places better than the other? Create both numerical and graphical summaries, and explain.
+

@@ -35,6 +35,14 @@ choco <- read.csv("https://raw.githubusercontent.com/xdaiISU/ds202materials/mast
 3.Do ratings depend on the cacao percentage of a chocolate bar? Create both numerical and graphical summaries, and explain. [Hint: Think about why the scatterplot is not a very good choice for visualization here.]
 
   Answer:
+  ``` {r}
+cor(choco$Cocoa_Percent, choco$Rating)
+w<- choco$Rating
+z<- choco$Cocoa_Percent
+g<- c(w,z)
+barplot(g,xlab='Rating', ylab='Cocoa Percentage')
+```
+  The correlation coefficient is very low and combined with the bar graph it is clear that ratings are not dependent on cocoa percentage.
   
 4.How do different bean origins compare in terms of the flavor of chocolates? Are beans from some places better than the other? Create both numerical and graphical summaries, and explain.
 
