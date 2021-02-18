@@ -35,3 +35,9 @@ correlation coefficient is very low which suggests that there is no correlation.
 
 4. How do different bean origins compare in terms of the flavor of chocolates? Are beans from some places better than the other? Create both numerical and graphical summaries, and explain.
 
+``` {r}
+e<- (choco$Rating)
+f<- choco$Bean_Origin
+fac<-factor(f, levels =unique(f))
+boxplot(e ~ fac, xlab='Origin', ylab='Rating')
+``` 
