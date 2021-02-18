@@ -19,6 +19,7 @@ choco <- read.csv("https://raw.githubusercontent.com/xdaiISU/ds202materials/mast
   
   boxplot(choco$Rating)
   ```
+  
 2.How does the number of ratings depend on the location of the company? Draw a bar chart of the number of reports.
 
   Answer:
@@ -42,22 +43,127 @@ z<- choco$Cocoa_Percent
 g<- c(w,z)
 barplot(g,xlab='Rating', ylab='Cocoa Percentage')
 ```
+
   The correlation coefficient is very low and combined with the bar graph it is clear that ratings are not dependent on cocoa percentage.
   
 4.How do different bean origins compare in terms of the flavor of chocolates? Are beans from some places better than the other? Create both numerical and graphical summaries, and explain.
 
   Answer: 
 ``` {r}
-#box plot
+  choco <- read.csv("https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/data/choco.csv") 
+  str(choco) 
+
+  BOfct <- factor(choco$Bean_Origin)
+  levels(BOfct) <- substr(levels(BOfct), 1, 3)
+  boxplot(choco$Rating ~ BOfct, main = "Ratings by Bean Origin", xlab = "Bean   Origin", ylab = "Rating")
 ```
 ``` {r}
 outstanding<- choco[choco$Rating >= 3.5,]
 q<- outstanding['Bean_Origin']
 as.data.frame(table(q))
 ```
-  From the boxplot we can see that the countries of origin that sit above the rest have observations with ratings higher than 3.5 so we searched for all the countries that had observations above 3.5. The countries that sit above the rest should have higher frequencies of observations higher than 3.5 so we made a table displaying these frequencies. From this table we can see that Ecuador, Peru and Venezuela have the highest amounts of observations where the rating is greater than or equal to 3.5. Their frequencies are significantly higher than the rest (88, 85, 104 respectively). In summation, the data leads us to believe that bean origin does have an effect on rating.
+  From the boxplot we can see that the countries of origin that sit above the rest have observations with ratings higher than 3.5 so we searched for all the countries that had observations above 3.5. The countries that sit above the rest should have higher frequencies of observations higher than 3.5 so we made a table displaying these frequencies. From this table we can see that Ecuador, Peru and Venezuela have the highest amounts of observations where the rating is greater than or equal to 3.5. Their frequencies are significantly higher than the rest (88, 85, 104 respectively). 
+  
+  ```{r}
+  chocoHRO <- choco[choco$Rating >= 4.0,] 
+belize <- chocoHRO[chocoHRO$Bean_Origin == "Belize", ]
+blend <- chocoHRO[chocoHRO$Bean_Origin == "Blend", ]
+bolivia <- chocoHRO[chocoHRO$Bean_Origin == "Bolivia", ]
+brazil <- chocoHRO[chocoHRO$Bean_Origin == "Brazil", ]
+colombia <- chocoHRO[chocoHRO$Bean_Origin == "Colombia", ]
+costaRica <- chocoHRO[chocoHRO$Bean_Origin == "Costa Rica", ]
+ecuador <- chocoHRO[chocoHRO$Bean_Origin == "Ecuador", ]
+ghana <- chocoHRO[chocoHRO$Bean_Origin == "Ghana", ]
+guatemala <- chocoHRO[chocoHRO$Bean_Origin == "Guatemala", ]
+haiti <- chocoHRO[chocoHRO$Bean_Origin == "Haiti", ]
+indonesia <- chocoHRO[chocoHRO$Bean_Origin == "Indonesia", ]
+jamaica <- chocoHRO[chocoHRO$Bean_Origin == "Jamaica", ]
+madagascar <- chocoHRO[chocoHRO$Bean_Origin == "Madagascar", ]
+mexico <- chocoHRO[chocoHRO$Bean_Origin == "Mexico", ]
+nicaragua <- chocoHRO[chocoHRO$Bean_Origin == "Nicaragua", ]
+pnewguinea <- chocoHRO[chocoHRO$Bean_Origin == "Papua New Guinea", ]
+peru <- chocoHRO[chocoHRO$Bean_Origin == "Peru", ]
+saotome <- chocoHRO[chocoHRO$Bean_Origin == "Sao Tome", ]
+solomonislands <- chocoHRO[chocoHRO$Bean_Origin == "Solomon Islands", ]
+stlucia <- chocoHRO[chocoHRO$Bean_Origin == "St. Lucia", ]
+tanzania <- chocoHRO[chocoHRO$Bean_Origin == "Tanzania", ]
+tobago <- chocoHRO[chocoHRO$Bean_Origin == "Tobago", ]
+venezuela <- chocoHRO[chocoHRO$Bean_Origin == "Venezuela", ]
+vietnam <- chocoHRO[chocoHRO$Bean_Origin == "Vietnam", ]
+
+
+belizeCount <- length(belize$Rating)
+blendCount <- length(blend$Rating)
+boliviaCount <- length(bolivia$Rating)
+brazilCount <- length(brazil$Rating)
+colombiaCount <- length(colombia$Rating)
+costaRicaCount <- length(costaRica$Rating)
+ecuadorCount <- length(ecuador$Rating)
+ghanaCount <- length(ghana$Rating)
+guatemalaCount <- length(guatemala$Rating)
+haitiCount <- length(haiti$Rating)
+indonesiaCount <- length(indonesia$Rating)
+jamaicaCount <- length(jamaica$Rating)
+madagascarCount <- length(madagascar$Rating)
+mexicoCount <- length(mexico$Rating)
+nicaraguaCount <- length(nicaragua$Rating)
+pnewguineaCount <- length(pnewguinea$Rating)
+peruCount <- length(peru$Rating)
+saotomeCount <- length(saotome$Rating)
+solomonislandsCount <- length(solomonislands$Rating)
+stluciaCount <- length(stlucia$Rating)
+tanzaniaCount <- length(tanzania$Rating)
+tobagoCount <- length(tobago$Rating)
+venezuelaCount <- length(venezuela$Rating)
+vietnamCount <- length(vietnam$Rating)
+
+counts <- c(belizeCount, blendCount, boliviaCount, brazilCount, colombiaCount, costaRicaCount, ecuadorCount, ghanaCount, guatemalaCount, haitiCount, indonesiaCount, jamaicaCount, madagascarCount, mexicoCount, nicaraguaCount, peruCount, pnewguineaCount, saotomeCount, solomonislandsCount, stluciaCount, tanzaniaCount, tobagoCount, venezuelaCount, vietnamCount)
+countryNames <- sort(unique(chocoHRO$Bean_Origin))
+
+?barplot
+barplot(counts, names.arg = substr(countryNames, 1, 3), main = "# of Outstanding Flavor Reviews by Country", xlab = "Bean Origin Countries", ylab = "# of Outstanding Flavors", col = "red")
+```
+
+  The bar plot above shows the count of "Outstanding" flavor ratings by Bean Origin Countries, which are ratings 4.0 to 5.0. Most of the countries on this list are either in South America or Africa, with the exception being Papua New Guinea. The highest count of "Outstanding" flavor ratings belongs to Venezuela. Overall, the high flavor ratings corresponding to bean origins cannot be directly tied to one country, but rather a couple continents.  
   
   
 5.Brainstorm two analyses you would like to perform (with your teammates). Describe in plain language what comparisons are you making. Create suitable numerical and graphical summaries for your analyses. Describe the results.
 
   Answer:
+  ```{r}
+  choco <- read.csv("https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/data/choco.csv") 
+str(choco) 
+
+totalRatings <- length(choco$Rating)
+ratingsHRO <- choco[choco$Rating >= 3.5,]
+HROCount <- length(ratingsHRO$Rating)
+HROPercentage <- HROCount / totalRatings
+nonHROPercentage <- 1.0 - HROPercentage
+
+slices <- c(HROPercentage, nonHROPercentage)
+lbls <- c("HRO Percentage", "Other")
+
+
+pie(slices, labels = lbls, main = "Pie Chart of Highly Recomended or Outstanding Ratings")
+```
+
+The analysis and pie chart above show the percentage of Highly Recommended or Outstanding flavor ratings compared to the other ratings. Around 38% of the reviews are either "Highly Recommended" or "Outstanding". This appears to be a little high, as the boxplot in Question 4 shows many of the averages of the reviews being in the "Recommended" Category.
+
+```{r}
+choco <- read.csv("https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/data/choco.csv") 
+str(choco) 
+
+totalRatings <- length(choco$Rating)
+ratingsUD <- choco[choco$Rating <= 2.9,]
+HROCount <- length(ratingsUD$Rating)
+UDPercentage <- HROCount / totalRatings
+nonUDPercentage <- 1.0 - UDPercentage
+
+slices2 <- c(UDPercentage, nonUDPercentage)
+lbls2 <- c("UD Percentage", "Other")
+
+
+pie(slices2, labels = lbls2, main = "Pie Chart of Disappinting or Unplesant Ratings")
+```
+
+The second analysis was to look at how many reviews received a "Disappointing" or "Unpleasant" flavor review compared to the rest of the reviews. From our analysis, we noted that around 24% of the reviews received a review in the two categories. This makes more sense as to why the reviews averaged in the "Recommended" category, since most of the Highly "Recommended" or "Outstanding" reviews were leveled out with "Disappointing" or "Unpleasant" reviews. 
