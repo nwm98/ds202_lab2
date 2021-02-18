@@ -47,6 +47,16 @@ barplot(g,xlab='Rating', ylab='Cocoa Percentage')
 4.How do different bean origins compare in terms of the flavor of chocolates? Are beans from some places better than the other? Create both numerical and graphical summaries, and explain.
 
   Answer: 
+``` {r}
+#box plot
+```
+``` {r}
+outstanding<- choco[choco$Rating >= 3.5,]
+q<- outstanding['Bean_Origin']
+as.data.frame(table(q))
+```
+  From the boxplot we can see that the countries of origin that sit above the rest have observations with ratings higher than 3.5 so we searched for all the countries that had observations above 3.5. The countries that sit above the rest should have higher frequencies of observations higher than 3.5 so we made a table displaying these frequencies. From this table we can see that Ecuador, Peru and Venezuela have the highest amounts of observations where the rating is greater than or equal to 3.5. Their frequencies are significantly higher than the rest (88, 85, 104 respectively). In summation, the data leads us to believe that bean origin does have an effect on rating.
+  
   
 5.Brainstorm two analyses you would like to perform (with your teammates). Describe in plain language what comparisons are you making. Create suitable numerical and graphical summaries for your analyses. Describe the results.
 

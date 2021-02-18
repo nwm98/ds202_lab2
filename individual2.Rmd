@@ -39,5 +39,26 @@ correlation coefficient is very low which suggests that there is no correlation.
 e<- (choco$Rating)
 f<- choco$Bean_Origin
 fac<-factor(f, levels =unique(f))
+levels(fac) <- substr(levels(fac), 1, 3)
 boxplot(e ~ fac, xlab='Origin', ylab='Rating')
 ``` 
+``` {r}
+head(sort(choco$Rating, decreasing = TRUE), n=900)
+outstanding<- choco[choco$Rating >= 3.5,]
+q<- outstanding['Bean_Origin']
+as.data.frame(table(q))
+```
+From this table we can see that Ecuador, Peru and Venezuela have the highest amounts of observations where the rating is greater than or equal to 3.5. Their numbers are significantly higher than the rest (88, 85, 104 respectively) which leads me to believe that bean origin does have an effect on rating.
+
+5.Brainstorm two analyses you would like to perform (with your teammates). Describe in plain language what comparisons are you making. Create suitable numerical and graphical summaries for your analyses. Describe the results.
+
+We are going to identify a rating greater than or equal to 3.5 as outstanding/highly recommended and a rating less than or equal to 2.9 as disappointing/not recommended.
+``` {r}
+head(sort(choco$Rating, decreasing=FALSE), n=544)
+disappointing<- choco[choco$Rating <= 2.9,]
+disappointing
+outstanding
+length(choco$Rating)
+```
+Disappointing: (544/2312)100 = 23.5% of observations were disappointing
+Outstanding: (875/2312)100 = 37.8% of observations were outstanding
